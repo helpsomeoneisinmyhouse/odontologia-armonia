@@ -1,0 +1,14 @@
+# Dependencias
+node_modules/
+
+# Base de datos SQLite
+*.db
+*.db-wal
+*.db-shm
+
+# Entorno
+.env
+
+# Logs
+*.log
+npm-debug.log*

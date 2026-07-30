@@ -1,0 +1,35 @@
+.medical-calendar-container {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  font-family: system-ui, -apple-system, sans-serif;
+}
+
+.week-grid {
+  display: grid;
+  flex-grow: 1; 
+  position: relative;
+}
+
+.grid-body {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  border-top: 1px solid #e0e0e0;
+  background-size: 100% calc(100% / var(--total-hours));
+  background-image: linear-gradient(to bottom, #f5f5f5 1px, transparent 1px); 
+}
+
+.appointment-card {
+  position: absolute;
+  background-color: #3b82f6;
+  color: white;
+  border-radius: 4px;
+  padding: 4px 8px;
+  font-size: 0.8rem;
+  box-sizing: border-box;
+  border: 1px solid #2563eb;
+  cursor: pointer;
+  transition: transform 0.2s, box-shadow 0.2s;
+  overflow: hidden;
+}

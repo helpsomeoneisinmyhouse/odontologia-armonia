@@ -1,0 +1,9 @@
+	{
+		"fk_pacientes":"1",
+		"fk_doctor":"1",
+		"date_cita":"2026-12-1",
+		"time_cita":"190",
+		"desc_cita":"pene",
+		"status_cita":"COMPLETADO",
+		"logic_cita":"A"
+	}
