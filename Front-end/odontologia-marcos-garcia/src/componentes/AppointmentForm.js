@@ -568,9 +568,15 @@ export default function AppointmentForm({ user, onSuccess }) {
     setForm(prev => ({ ...prev, telf_paciente: val }));
   };
 
+
+  // ---------------------------------------------------------
+  // EL HANDLEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE
+  // ---------------------------------------------------------
   const handleSubmit = async () => {
     setError('');
     setSubmitting(true);
+
+    console.log('entro al handle')
 
     const hour = parseHour(form.date_cita_2);
     if (hour < 8 || hour > 18) {
@@ -585,9 +591,13 @@ export default function AppointmentForm({ user, onSuccess }) {
       return;
     }
 
+    console.log('llegamos justo antes del date')
+
     try {
       const date = `${form.date_cita_1}T${form.date_cita_2}:00.000Z`;
+      console.log(date)
       let response;
+
 
       if (isPatient && user?.id_paciente) {
         response = await fetch(`${API_BASE}/citas`, {
@@ -847,6 +857,10 @@ export default function AppointmentForm({ user, onSuccess }) {
                   <ErrorText><FiAlertCircle /> No podés seleccionar una fecha pasada</ErrorText>
                 )}
               </FieldGroup>
+
+
+
+              {/*LA HORA DE LA DISCORDIAAAAAAAAAAAAAAAAAAA*/}
               <FieldGroup>
                 <FieldLabel>Hora *</FieldLabel>
                 <FieldInput
@@ -859,6 +873,9 @@ export default function AppointmentForm({ user, onSuccess }) {
                 />
               </FieldGroup>
             </FieldGrid>
+
+
+
 
             {timeError && (
               <ErrorText><FiAlertCircle /> {timeError}</ErrorText>

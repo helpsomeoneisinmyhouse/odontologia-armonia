@@ -98,23 +98,29 @@ const CalendarioDoctorSemana = (rol) => {
     try {
       const response = await fetch(`${API_BASE}/citaCompleta`);
       const citas = await response.json();
-      const returning = citas.map(cita => {        
-        let fechaPrueba2 = new Date(cita.date_cita);
-        let fechaPrueba = new Date(cita.date_cita);
+      const returning = citas.map(cita => {  
+
+        
+        let fechaPrologo = new Date(cita.date_cita);
+        let fechaEpilogo = new Date(cita.date_cita);
         let status = cita.status_cita;
         const hoy = new Date();
         let color = '#adff2f';
+                
+        fechaEpilogo.setHours(fechaEpilogo.getHours() + parseInt(cita.time_cita));
 
-        fechaPrueba2.setHours(fechaPrueba.getHours() - 4);
-        fechaPrueba.setHours(fechaPrueba.getHours() + cita.time_cita - 4);
-        hoy.setHours(hoy.getHours() - 4);
-
-        if (hoy.getTime() > fechaPrueba2.getTime()) {
+        if (hoy.getTime() > fechaPrologo.getTime()) {
           status = "COMPLETADA";
         }
+        
+        let fechaInicio = fechaPrologo.toISOString();
+        let fechaFinal = fechaEpilogo.toISOString();
 
-        let fechaInicio = fechaPrueba2.toISOString();
-        let fechaFinal = fechaPrueba.toISOString();
+        console.log(fechaInicio)
+        console.log('haber')
+        console.log(fechaFinal)
+        console.log(cita.time_cita)
+        console.log('\n')
 
         switch (status) {
           case "CONFIRMADA":
@@ -132,7 +138,7 @@ const CalendarioDoctorSemana = (rol) => {
           default:
             break;
         }
-        
+
         return {
           id: cita.id_citas,
           title: cita.name_paciente, 
@@ -152,6 +158,7 @@ const CalendarioDoctorSemana = (rol) => {
               id: cita.id_citas
             }
           };
+
       });
 
       return returning;
@@ -183,6 +190,7 @@ const CalendarioDoctorSemana = (rol) => {
 
   return (
     <CalendarWrapper>
+      {/*console.log(lista)*/}
       <EventModal
         isOpen={isOpen} 
         onClose={closeModal} 

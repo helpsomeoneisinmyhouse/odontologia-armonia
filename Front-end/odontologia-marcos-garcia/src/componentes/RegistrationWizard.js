@@ -516,6 +516,7 @@ export default function RegistrationWizard({ onRegister, onBackToLogin, embedded
 
     try {
       const date = `${form.date_cita_1}T${form.date_cita_2}:00.000Z`;
+      console.log(date)
       const response = await fetch(`${API_BASE}/citaCompleta`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
